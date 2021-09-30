@@ -18,7 +18,6 @@ from pathlib import Path
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-rhr-15nd40r&o5c*-w^-m_!89eb88-%9z6#^(o*n1&pab-6n5q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
