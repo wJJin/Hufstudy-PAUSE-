@@ -1,0 +1,139 @@
+<html>
+
+<head>
+    <title>HUFSTUDY</title>
+    <meta charset='utf-8'>
+    <!-- <meta name='viewport' content='width=device-width, initial-scale=1'> -->
+    {% block mobileView %}
+    {% endblock %}
+    
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+
+    
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+    <!-- CheckBoxCSS -->
+    <link rel="stylesheet" href="{% static 'css/users/checkbox.css' %}" type="text/css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.11.0/css/mdb.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+    </script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.11.0/js/mdb.min.js">
+    </script>
+
+    {% block header %}
+    {% endblock %}
+</head>
+
+<body style="background-color: #f7f7ff;">
+
+    {% load static %}
+
+    <div class="container">
+                <div class="card" style="width: 30rem;">
+                    <div class="card-body">
+                        <form method="POST" action="." novalidate>
+                            {% csrf_token %}
+    
+                            <div class="mb-4 md-form">
+                                <label name="label_user_id" for="{{ form.user_id.id_for_label }}"><i class="fas fa-user"></i>&nbsp;&nbsp;{{ form.user_id.label }}</label>
+                                {{ form.user_id }}
+                                <script type="text/javascript">
+                                    if (document.getElementsByName('user_id')[0].value != '') {
+                                        document.getElementsByName('label_user_id')[0].setAttribute('class', 'active');
+                                    }
+                                </script>
+                                {% if form.user_id.errors %}
+                                <script type="text/javascript">
+                                    document.getElementsByName('user_id')[0].setAttribute('class',
+                                        'form-control is-invalid')
+                                </script>
+                                {% for error in form.user_id.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+    
+                            <div class="mb-4 md-form">
+                                <label for="{{ form.password.id_for_label }}"><i class="fas fa-lock"></i>&nbsp;&nbsp;{{ form.password.label }}</label>
+                                {{ form.password }}
+    
+                                {% if form.password.errors %}
+                                <script type="text/javascript">
+                                    document.getElementsByName('password')[0].setAttribute('class', 'form-control is-invalid')
+                                </script>
+                                {% for error in form.password.errors %}
+                                <div class="invalid-feedback">
+                                    {{ error }}
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+    
+                            <!-- {{ login_form }} -->
+                            <label>
+                                <input type="checkbox" name="remember_session"/>
+                                <span style="padding-bottom: 35px;">로그인 상태 유지</span>
+                            </label>
+                            <br>
+                            <!-- <input type="checkbox" name="remember_session" > 로그인 상태 유지<br><br> -->
+    
+                            <button type="submit" style="opacity: 90%; font-size: 16px; margin-top: -5px;" class="btn btn-red btn-lg btn-block">로그인</button>
+                        </form>
+                    </div>
+                </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %}
+    <script>
+        alert("{{ message.message }}")
+    </script>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+</body>
+
+</html>

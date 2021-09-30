@@ -1,0 +1,24 @@
+{% autoescape off %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<body>
+    <div style="width:100%;min-width:100%;height:100%;">
+        <div style="padding: 70px 0; background: #f7f8f9;">
+            <div style="margin: 0 auto; width: 600px; color: #000;">
+                <div style="padding: 30px 90px; text-align: center; border: 1px solid #dfdfdf; background: #fff;">
+                    <h3 style="margin-bottom: 35px; font-size: 30px; font-weight: 600;">회원가입 인증 메일</h3>
+                    <div style="padding: 10px 0 20px; border-top: 1px solid rgb(172, 172, 172);">
+                        <p style="font-size: 14px; font-weight: 600; line-height: 20px;">HUFSTUDY에 오신 것을 환영합니다!<br>아래 링크를 클릭하시면 회원가입이 완료됩니다.</p>
+                    </div>
+                    <div style="padding: 20px 30px; background: #f7f8f9;"><a style="font-size: 18px; font-weight: bold;" href="http://{{ domain }}{% url 'users:activate' uid64=uid token=token %}">인증하기</a></div>
+                    <div style="padding: 10px 0 20px; border-top: 1px solid rgb(172, 172, 172);">
+                        <p style="font-size: 12px; font-weight: 600; line-height: 20px; color: rgba(40, 43, 43, 0.616);">가입을 신청하지 않았는데 이 메일을 받으셨다면 무시하셔도 됩니다.<br>인증 없이 귀하의 이메일 주소는 사용되지 않습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endautoescape %}
