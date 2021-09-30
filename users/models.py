@@ -42,7 +42,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=128, verbose_name="이메일",null=True, unique=True)
     hp = models.IntegerField(verbose_name="핸드폰번호", null=True, unique=True)
     name = models.CharField(max_length=8, verbose_name="이름", null=True)
-    student_id = models.IntegerField(max_length=7, verbose_name="학번", null=True)
+    student_id = models.IntegerField(max_length=9, verbose_name="학번", null=True)
     grade = models.CharField(choices=GRADE_CHOICES, max_length=18, verbose_name="학년", null=True)
     level = models.CharField(choices=LEVEL_CHOICES, max_length=18, verbose_name="등급", default=3)
     department = models.CharField(choices=DEPARTMENT_CHOICES, max_length=40, verbose_name="학과", null=True)

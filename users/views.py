@@ -30,7 +30,7 @@ class AgreementView(View):
             messages.info(request, "약관에 모두 동의해주세요.")
             return render(request, 'users/agreement.html')
 
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ValidationError
 from .forms import RegisterForm
 from django.views.generic import CreateView
  

@@ -11,11 +11,11 @@ def hp_validator(value):
 		raise forms.ValidationError('정확한 핸드폰 번호를 입력해주세요.')
 
 def student_id_validator(value):
-	if len(str(value)) != 8:
-		raise forms.ValidationError('본인의 학번 8자리를 입력해주세요.')
+	if len(str(value)) != 9:
+		raise forms.ValidationError('본인의 학번 9자리를 입력해주세요.')
 
 
-# 컴공 회원가입 폼
+
 class RegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
@@ -112,7 +112,7 @@ class LoginForm(forms.Form):
             try:
                user = User.objects.get(user_id=user_id)
             except User.DoesNotExist:
-                self.add_error('user_id', '아이디가 존재하지 않습니다.')
+                self.add_error('user_id', '존재하지 않는 아이디입니다.')
                 return
             
             if not check_password(password, user.password):

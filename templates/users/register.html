@@ -1,5 +1,4 @@
 {% extends "users/user_base.html" %}
-{% load static %}
 
 {% block mobileView %}
 <meta name="viewport" content="width=570, user-scalable=yes">
@@ -117,8 +116,20 @@
                                     </div>
                                     {% endfor %}
                                     {% endif %}
+                                    {% if request.method == 'POST' %}
+                                        {%if request.POST.email|slice:"-11:" != "@hufs.ac.kr"%}
+                                            <script type="text/javascript">
+                                                document.getElementsByName('email')[0].setAttribute('class',
+                                                'form-control is-invalid')
+                                            </script>
+                                            <div class="invalid-feedback">
+                                                @hufs.ac.kr로 끝나는 이메일을 사용해 주세요.
+                                            </div>
+                                        {% endif %} 
+                                    {% endif %}
+
                                     <small class="form-text text-muted">
-                                        회원가입 후 입력하신 메일주소로 본인인증 메일이 전송됩니다.
+                                        회원가입 후 입력하신 메일주소로 본인인증 메일이 전송됩니다. 학교 이메일만 사용 가능합니다.
                                     </small>
                                 </div>
                                 <!--이름-->
@@ -194,7 +205,7 @@
                                     {% endfor %}
                                     {% endif %}
                                     <small class="form-text text-muted">
-                                        본인의 학번을 입력해주세요.
+                                        학번은 숫자만 입력 가능합니다.
                                     </small>
                                 </div>
                                 <!--학년-->

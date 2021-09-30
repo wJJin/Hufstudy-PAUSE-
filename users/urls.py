@@ -10,5 +10,4 @@ urlpatterns = [
     path('activate/<str:uid64>/<str:token>/', views.activate, name='activate'),
     path('', views.LoginView.as_view(), name='login'),
     path('logout/', views.logout_view, name='logout'),
-
 ]
