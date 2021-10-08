@@ -9,6 +9,10 @@ from .choice import *
 
 class UserManager(BaseUserManager):
     def create_user(self, user_id, password, email, hp, name, student_id, grade, department, auth, **extra_fields):
+
+        if not user_id:
+            raise ValueError('user_id Required!')
+            
         user = self.model(
             user_id = user_id,
             email = email,

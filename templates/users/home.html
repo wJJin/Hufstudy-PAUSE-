@@ -7,28 +7,13 @@
     <title>HUFSTUDY</title>
     {% block mobileView %}
     {% endblock %}
+    {% load static %}
 
     <!-- Bootstrap v5.0-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-
-
-    
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="?after">
 
     
-    {% load static %}
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
     <!-- Font Awesome Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -55,98 +40,76 @@
 
 
 
-
-
-
-
-
     <style>
 
-
-      @font-face {
-        font-family: 'BBTreeGB';
-        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_nine_@1.1/BBTreeGB.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-      }
-      @font-face {
-        font-family: '양진체';
-        src: url('https://cdn.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-      }
-
-
       #jb-container {
-        width: 2200px;
+        width: 1530px;
         margin: 0px auto;
       }
 
       #jb-header1 {
-        width: 2200px;
-        height:120px;
+        width: 1530px;
+        height:50px;
         float:left;
       }
       #jb-header2 {
-        margin-left:200px;
-        margin-right:50px;
+        margin-left:160px;
         float:left;
-        width:400px;
-        height:140px;
+        width:350px;
+        height:100px;
       }
       #jb-header3 {
-        width: 1083px;
-        height:140px;
-        padding: 20px;
-        margin-bottom: 80px;
+        width: 730px;
+        height:100px;
+        padding: 2px;
+        margin-bottom: 30px;
         float:left;
+        border: 1px solid #bcbcbc;
       }
 
       #jb-content {
-        width: 1000px;
-        height: 800px;
-        margin-left:80px;
-        margin-bottom: 50px;
+        width: 500px;
+        height: 500px;
+        margin-left:100px;
         float: left;
+        border: 1px solid #bcbcbc;
       }
       #jb-content2 {
-        width: 600px;
-        height: 800px;
-        padding: 20px;
-        margin-left:10px;
-        margin-bottom: 50px;
+        width: 500px;
+        height: 200px;
+        margin-left:30px;
+        float: left;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-content2_1 {
+        margin-top:20px;
+        width: 500px;
+        height: 280px;
+        margin-left:30px;
         float: left;
         border: 1px solid #bcbcbc;
       }
       #jb-content3 {
-        width: 1610px;
-        height: 550px;
-        margin-left:80px;
-        margin-bottom: 20px;
+        width: 1030px;
+        height: 55px;
+        margin-left:100px;
+        margin-top:20px;
         float: left;
-        border-top: 1px solid #bcbcbc;
+        border-top: 2px solid #d1b4cd;
       }
-      #jb-content4 {
-        width: 2040px;
-        height: 100px;
-        margin-left:80px;
-        float: left;
-        
-      }
-
       #jb-sidebar {
-        width: 400px;
-        height: 300px;
-        margin-right:80px;
-        margin-bottom: 20px;
+        width: 260px;
+        height: 250px;
+        margin-right:100px;
+        margin-bottom: 2px;
         float: right;
       }
       #jb-sidebar2 {
-        width: 400px;
+        width: 260px;
         height: 480px;
-        padding: 20px;
-        margin-right:80px;
-        margin-bottom: 20px;
+        padding: 2px;
+        margin-top:15px;
+        margin-right:100px;
         float: right;
         border: 1px solid #bcbcbc;
       }
@@ -155,26 +118,24 @@
 
 
 <body style="background-color: #f7f7ff;">
+  {% load static %}
   <div id="jb-container">
 
     <div id="jb-header1">
     </div>
 
     <div id="jb-header2">
-      <img src="" height=140px width=400px;  >
+      <a href="#"><img src="{%static 'img/users/HUFSTUDY_logo.png' %}" width="350px" height="120px" style="border-radius: 8px;"></a>
     </div>
-    {% load static %}
     <div id="jb-header3" style="background: darkgrey     no-repeat 0 0;background-size:100% 100%;">
         
     </div>
 
     <div id="jb-content" style="background-color:#ffffff; border:1px solid #bcbcbc;">
       {% if user.is_authenticated %}
-        <article style="padding:20px">
-        </article>
 
       {% else %}
-        <img src="{%static 'img/calendar.jpg' %}" width=800px>
+
       {% endif %}
 
     </div>
@@ -186,17 +147,18 @@
       {% if user.is_authenticated %}
         
       <a class="nav-link"><span id="user_id">{{ user.name }}</span>님 반갑습니다!</a>
+      <a class="nav-link" href="{% url 'users:mypage' %}">마이페이지</a>
       <a class="nav-link" href="{% url 'users:logout' %}">logout</a>
 
 
       {% else %}
-      <div class="card" style="width: 400px; height:300px; border: 1px solid #bcbcbc;">
+      <div class="card" style="width: 260px; height:250px; border: 1px solid #bcbcbc;">
         <div class="card-body">
             <form method="POST" action="." novalidate>
                 {% csrf_token %}
 
-                <div class="mb-4 md-form">
-                    <label name="label_user_id" for="{{ form.user_id.id_for_label }}"><i class="fas fa-user"></i>&nbsp;&nbsp;{{ form.user_id.label }}</label>
+                <div class="mb-4 md-form" style="width: 210px; height: 18px;">
+                    <label name="label_user_id" for="{{ form.user_id.id_for_label }}""><i class="fas fa-user"></i>&nbsp;&nbsp;{{ form.user_id.label }}</label>
                     {{ form.user_id }}
                     <script type="text/javascript">
                         if (document.getElementsByName('user_id')[0].value != '') {
@@ -216,7 +178,7 @@
                     {% endif %}
                 </div>
 
-                <div class="mb-4 md-form">
+                <div class="mb-4 md-form" style="width: 210px; height: 40px;">
                     <label for="{{ form.password.id_for_label }}"><i class="fas fa-lock"></i>&nbsp;&nbsp;{{ form.password.label }}</label>
                     {{ form.password }}
 
@@ -233,16 +195,17 @@
                 </div>
 
 
-                <button type="submit" style="opacity: 90%; font-size: 16px; margin-top: -5px;" class="btn btn-purple btn-lg btn-block">로그인</button>
+                <button type="submit" style="opacity: 90%; font-size: 14px; margin-top: -5px; width: 210px; height: 50px; text-align: center;" class="btn btn-purple btn-lg btn-block">로그인</button>
             </form>
 
-            <div class="" style="font-size:1.0em; line-height: 80%;">
+            <div class="" style="font-size:0.8em; line-height: 90%;">
                 <br>
                 <a href="/agreement" style="float: right; color: #47102c;">HUFSTUDY에 회원가입 하기</a>
             </div>
             <br>
-            <div class="" style="font-size:1.0em;">
-                <a href="#" style="float: right; color: #969595;"><i>ID/PW를 잊으셨나요?</i></a>
+            <div class="" style="font-size:0.8em;  line-height: 10%;">
+                <br>
+                <a href="/recovery" style="float: right; color: #969595;"><i>ID/PW를 잊으셨나요?</i></a>
             </div>
             
         </div>
@@ -253,28 +216,31 @@
     {% endif %}
     </div>
 
+    <div id="jb-content2_1" style="background-color:#ffffff;">
+    </div>
+
     <div id="jb-sidebar2" style="background-color:#ffffff;">
     </div>
 
-    <div id="jb-content3" style=" padding-top: 50px;">
+    <div id="jb-content3" style=" padding-top: 30px;">
       <div class="row">
-        <div class="col" >
-          <a href="#"><img src="{%static 'img/Computing.jpg' %}" width="520px"></a>
+        <div class="col">
+          <a href="#"><img src="{%static 'img/users/Computing.jpg' %}" width="321px" style="border-radius: 8px;"></a>
         </div>
         <div class="col">
-          <a href="#"><img src="{%static 'img/History.jpg' %}" width="520px"></a>
+          <a href="#"><img src="{%static 'img/users/History.jpg' %}" width="321px" style="border-radius: 8px;"></a>
         </div>
         <div class="col">
-          <a href="#"><img src="{%static 'img/IELTS.jpg' %}" width="520px"></a>
+          <a href="#"><img src="{%static 'img/users/IELTS.jpg' %}" width="321px" style="border-radius: 8px;"></a>
         </div>
       </div>
 
       <div class="row" style="padding-top: 20px;">
         <div class="col">
-          <a href="#"><img src="{%static 'img/TOEIC.jpg' %}" width="520px"></a>
+          <a href="#"><img src="{%static 'img/users/TOEIC.jpg' %}" width="321px" style="border-radius: 8px;"></a>
         </div>
         <div class="col">
-          <a href="#"><img src="{%static 'img/TOEFL.jpg' %}" width="520px"></a>
+          <a href="#"><img src="{%static 'img/users/TOEFL.jpg' %}" width="321px" style="border-radius: 8px;"></a>
         </div>
         <div class="col">
           <a href="#">더보기</a>
@@ -282,13 +248,6 @@
       </div>
     </div>  
 
-
-    <div id="jb-content4" style="">
-      
-    </div>
-
   </div>
-
-    
 </body>
 </html>

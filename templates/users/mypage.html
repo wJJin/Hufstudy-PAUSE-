@@ -1,0 +1,102 @@
+{% extends "users/mypage_base.html" %}
+
+{% block mobileView %}
+<meta name="viewport" content="width=570, user-scalable=yes">
+{% endblock %}
+
+{% block contents %}
+
+    {% load static %}
+    <div id="jb-container">
+        <div id="jb-header1">
+            <img src="{%static 'img/users/logotop.png' %}" style="width: 1530px; height: 70px;">
+            <button class="btn1" type="button" onclick="location.href='/'" style="opacity: 0;">버튼1</button>
+        </div>
+
+        <div id="jb-container2">
+            <div id="jb-container2-content">
+                <div class="" style="font-size:0.8em;">
+                    <br>
+                </div>
+                <h5 style="margin: 0px; font-size: 1.5rem; font-family: '양진체';">&nbsp&nbsp&nbspMY PROFILE</h5>
+            </div>
+            <div id="jb-container2-content2">
+                <table>
+                    <div class="" style="font-size:0.8em;">
+                        <br>
+                    </div>
+                    <tr>
+                        <td>&nbsp&nbsp아이디:</td>
+                        {% if user.level == '0'%}
+                        <td>&nbsp{{ user.user_id }}(개발자)</td>
+                        {% elif user.level == '1' %}
+                        <td>&nbsp{{ user.user_id }}(관리자)</td>
+                        {% else %}  
+                        <td>&nbsp{{ user.user_id }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <td>&nbsp&nbsp이메일:</td>
+                        <td>&nbsp{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp&nbsp이름:</td>
+                        <td>&nbsp{{ user.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp&nbsp연락처:</td>
+                        <td>&nbsp{{ user.hp }}</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp&nbsp학번:</td>
+                        <td>&nbsp{{ user.student_id }}</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp&nbsp학년:</td>
+                        <td>&nbsp{{ user.grade }}</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp&nbsp학과:</td>
+                        <td>&nbsp{{ user.department }}</td>
+
+                        
+                    </tr>
+                    
+                </table>
+                <div class="" style="font-size:0.8em;">
+                    <br>
+                </div>
+                &nbsp&nbsp&nbsp&nbsp
+                <a href="{% url 'users:mypage_update' %}" class="btn btn-purple" style="font-family: 'paybooc-Bold';">프로필 수정</a>
+                <a href="#" class="btn btn-purple" style="font-family: 'paybooc-Bold'; width: 120px;">비밀번호 변경</a>
+                <a href="{% url 'users:mypage_delete' %}" class="btn btn-red" style="font-family: 'paybooc-Bold';">회원탈퇴</a>
+            </div>
+            <div id="jb-container2-content3">
+                <h1 style="font-size: 0.6em; color: #8C8C8C;">
+                    <br><br><br>
+                    &nbsp&nbsp더 나은 HUFSTUDY 사용을 위해 부탁드려요!</h1>
+            </div>
+
+        </div>
+        <div id="jb-content2">
+            <br>
+            <h5 style="margin: 0px; font-size: 1.8rem; font-family: '양진체'; text-align: center;">Time Table</h5>
+            
+        </div>
+        <div id="jb-content3">
+            <br>
+            <h5 style="margin: 0px; font-size: 1.8rem; font-family: '양진체'; text-align: center;">To Do List</h5>
+
+        </div>
+
+        <div class="btn-group" role="group" style="position: absolute; left:100px; top:585px;">
+            <button class="btn btn-secondary" type="button">
+                오류 신고
+            </button> 
+            <button class="btn btn-secondary" type="button" style="width: 158px;">
+                ABOUT HUFSTUDY
+            </button>
+        </div>
+
+    </div>
+    {% endblock %}

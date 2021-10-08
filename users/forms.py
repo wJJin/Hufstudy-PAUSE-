@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.hashers import check_password
+from django.forms import fields
 from .models import User
 from django.contrib.auth.forms import AuthenticationForm, UserChangeForm, SetPasswordForm, UserCreationForm, PasswordChangeForm
 from django.contrib.auth import get_user_model
@@ -80,11 +81,6 @@ class RegisterForm(UserCreationForm):
 
         return user
 
-def save(self, commit=True):
-    user = super(RegisterForm, self).save(commit=False)
-    user.level = '2'
-    user.is_active = False
-    user.save()
 
 # 로그인 폼
 
@@ -117,3 +113,50 @@ class LoginForm(forms.Form):
             
             if not check_password(password, user.password):
                 self.add_error('password', '비밀번호가 틀렸습니다.')
+
+#마이페이지
+
+from django.contrib.auth.forms import UserChangeForm
+
+class CustomUserChangeForm(UserChangeForm):
+    
+    hp = forms.IntegerField(label='연락처', widget=forms.NumberInput(
+        attrs={'class': 'form-control', 'maxlength':'11', 'oninput':"maxLengthCheck(this)",}), 
+    )   
+    name = forms.CharField(label='이름', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'maxlength':'8',}), 
+    )
+    student_id = forms.IntegerField(required=False, label='학번', widget=forms.NumberInput(
+        attrs={'class': 'form-control', 'maxlength':'8', 'oninput':"maxLengthCheck(this)",}), 
+    )   
+    grade = forms.ChoiceField(choices=GRADE_CHOICES, label='학년', widget=forms.Select(
+        attrs={'class': 'form-control',}), 
+    )
+    department = forms.ChoiceField(choices=DEPARTMENT_CHOICES, label='학과', widget=forms.Select(
+        attrs={'class': 'form-control',}), 
+    )
+    
+    class Meta:
+        model = User()
+        fields = ['hp','name','student_id', 'grade', 'department']
+
+#회원탈퇴
+
+from django.contrib.auth.hashers import check_password
+
+class CheckPasswordForm(forms.Form):
+    password = forms.CharField(label='비밀번호', widget=forms.PasswordInput(
+        attrs={'class': 'form-control',}), 
+    )
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user = user
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        confirm_password = self.user.password
+        
+        if password:
+            if not check_password(password, confirm_password):
+                self.add_error('password', '비밀번호가 일치하지 않습니다.')

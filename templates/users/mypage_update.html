@@ -1,0 +1,93 @@
+{% extends "users/mypage_base.html" %}
+
+{% block mobileView %}
+<meta name="viewport" content="width=570, user-scalable=yes">
+{% endblock %}
+
+{% block contents %}
+
+    {% load static %}
+    <div id="jb-container">
+        <div id="jb-header1">
+            <img src="{%static 'img/users/logotop.png' %}" style="width: 1530px; height: 70px;">
+        </div>
+
+        <div id="jb-container2" style="height: 470px;">
+            <div id="jb-container2-content">
+                <div class="" style="font-size:0.8em;">
+                    <br>
+                </div>
+                <h5 style="margin: 0px; font-size: 1.5rem; font-family: '양진체';">&nbsp&nbsp&nbspMY PROFILE</h5>
+            </div>
+            <div id="jb-container2-content2" style="height: 350px;">
+                    <div class="" style="font-size:0.8em;">
+                        <br>
+                    </div>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <table>
+                            <tr>
+                                <td>&nbsp&nbsp아이디:</td>
+                                {% if user.level == '0'%}
+                                <td>&nbsp{{ user.user_id }}(개발자)</td>
+                                {% elif user.level == '1' %}
+                                <td>&nbsp{{ user.user_id }}(관리자)</td>
+                                {% else %}  
+                                <td>&nbsp{{ user.user_id }}</td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td>&nbsp&nbsp이메일:</td>
+                                <td>&nbsp{{ user.email }}</td>
+                            </tr>
+                            <tr>
+                                <td >&nbsp&nbsp이름:</td>
+                                <td >{{ user_change_form.name }}</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp&nbsp연락처:</td>
+                                <td>{{ user_change_form.hp }}</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp&nbsp학번:</td>
+                                <td>{{ user_change_form.student_id }}</td>
+                            </tr>
+                            <tr>
+                                <td >&nbsp&nbsp학년:</td>
+                                <td >{{ user_change_form.grade }}</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp&nbsp학과:</td>
+                                <td>{{ user_change_form.department }}</td>
+                            </tr>
+                        </table>
+
+                <div class="" style="font-size:0.8em;">
+                    <br>
+                </div>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <a href="{% url 'users:mypage' %}" class="btn btn-red" style="font-family: 'paybooc-Bold';">수정취소</a>
+                &nbsp&nbsp&nbsp&nbsp
+                <button type="submit" class="btn btn-purple" style="font-family: 'paybooc-Bold';">수정하기</button>
+            </form>
+            </div>
+            <div id="jb-container2-content3">
+                <h1 style="font-size: 0.6em; color: #8C8C8C;">
+                    <br><br><br>
+                    &nbsp&nbsp알아주세요!!)) 전화번호 앞자리가 0으로 시작시 0을 제외하고 저장됩니다.</h1>
+            </div>
+
+        </div>
+        <div id="jb-content2">
+            <br>
+            <h5 style="margin: 0px; font-size: 1.8rem; font-family: '양진체'; text-align: center;">Time Table</h5>
+            
+        </div>
+        <div id="jb-content3">
+            <br>
+            <h5 style="margin: 0px; font-size: 1.8rem; font-family: '양진체'; text-align: center;">To Do List</h5>
+
+        </div>
+    </div>
+
+    {% endblock %}

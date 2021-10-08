@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from .decorators import *
-from .models import User
+from .models import User 
 from django.views.generic import View
 from django.contrib import messages
+from django.conf import settings
 
 from django.urls import reverse
 from .helper import send_mail
@@ -11,7 +12,9 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 from django.contrib.auth.tokens import default_token_generator
+from django.core.mail import EmailMessage
 
+# 약관 및 개인정보 동의
 @method_decorator(logout_message_required, name='dispatch')
 class AgreementView(View):
     def get(self, request, *args, **kwargs):
@@ -30,10 +33,10 @@ class AgreementView(View):
             messages.info(request, "약관에 모두 동의해주세요.")
             return render(request, 'users/agreement.html')
 
+# 회원가입
 from django.core.exceptions import PermissionDenied, ValidationError
 from .forms import RegisterForm
 from django.views.generic import CreateView
- 
 class RegisterView(CreateView):
     model = User
     template_name = 'users/register.html'
@@ -95,7 +98,6 @@ from .forms import LoginForm
 from django.contrib.auth import login, authenticate
 from django.views.generic import FormView
 
-#@method_decorator(logout_message_required, name='dispatch')
 class LoginView(FormView):
     template_name = 'users/home.html'
     form_class = LoginForm
@@ -118,3 +120,46 @@ from django.contrib.auth import logout
 def logout_view(request):
     logout(request)
     return redirect('/')
+
+# 마이페이지
+
+@login_message_required
+def mypage_view(request):
+    if request.method == 'GET':
+        return render(request, 'users/mypage.html')
+
+from .forms import CustomUserChangeForm
+
+@login_message_required
+def mypage_update_view(request):
+    if request.method == 'POST':
+        user_change_form = CustomUserChangeForm(request.POST, instance=request.user)
+
+        if user_change_form.is_valid():
+            user_change_form.save()
+            messages.success(request, '회원정보가 수정되었습니다.')
+            return render(request, 'users/mypage.html')
+
+    else:
+        user_change_form = CustomUserChangeForm(instance = request.user)
+
+        return render(request, 'users/mypage_update.html', {'user_change_form':user_change_form})
+       
+#회원탈퇴
+
+from .forms import CheckPasswordForm
+
+@login_message_required
+def mypage_delete_view(request):
+    if request.method == 'POST':
+        password_form = CheckPasswordForm(request.user, request.POST)
+        
+        if password_form.is_valid():
+            request.user.delete()
+            logout(request)
+            messages.success(request, "회원탈퇴가 완료되었습니다.")
+            return redirect('/')
+    else:
+        password_form = CheckPasswordForm(request.user)
+
+    return render(request, 'users/mypage_delete.html', {'password_form':password_form})

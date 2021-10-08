@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth import views as auth_views
 from . import views
 
 app_name = 'users'
@@ -10,4 +11,14 @@ urlpatterns = [
     path('activate/<str:uid64>/<str:token>/', views.activate, name='activate'),
     path('', views.LoginView.as_view(), name='login'),
     path('logout/', views.logout_view, name='logout'),
+
+    path('mypage/', views.mypage_view, name='mypage'),
+    path('mypage/update/', views.mypage_update_view, name='mypage_update'),
+    path('mypage/delete/', views.mypage_delete_view, name='mypage_delete'),
+
+
+
+
+
+
 ]

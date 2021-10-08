@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: '양진체';
+    src: url('https://cdn.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+@font-face {
+    font-family: 'paybooc-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+  .btn {font-size: 14px; width:105px; height:40px; padding:.8em 1.2em; line-height:14px;color: #fff; text-align: center; position:relative;}
+  .btn {font-size: 14px; width:105px; height:40px; padding:.8em 1.2em; line-height:14px;color: #fff; text-align: center; position:relative;}
+  
+  .btn.btn-purple{background-color: #B45BCA; border-color: #B45BCA; -webkit-box-shadow: 0 3px 0 #9f50b3; box-shadow: 0 3px 0 #9f50b3;}
+  .btn.btn-purple:hover{background-color:rgb(146, 51, 170);}
+  .btn.btn-purle:active{top: 3px; outline: none; -webkit-box-shadow: none; box-shadow: none;}
+
+  .btn.btn-red{background-color: #ea4f37; border-color: #ea4f37; -webkit-box-shadow: 0 3px 0 #b13825; box-shadow: 0 3px 0 #b13825;}
+  .btn.btn-red:active{top: 3px; outline: none; -webkit-box-shadow: none; box-shadow: none;}
+
