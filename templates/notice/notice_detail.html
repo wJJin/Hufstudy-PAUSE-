@@ -1,0 +1,22 @@
+<div class="card">
+    <!--제목,분류,작성일-->
+    <div class="card-header">
+        <strong>{{ notice.title }}</strong><span>[공지사항]</span>
+        <span>{{ notice.registered_date|date:'Y.m.d. H:i' }}</span>
+    </div>
+    <div class="card-body">
+        <!--작성자, 조회수-->
+        <div>
+            <span>작성자 : {{ notice.writer }}</span>
+            <span>조회수 : {{ notice.hits }}</span>
+        </div>
+        <!--내용-->
+        <div>
+            {{ notice.content }}
+        </div>
+    </div>
+</div>
+
+<div>
+    <button onclick="location.href='/notice/'">목록으로</button>
+</div>

@@ -1,0 +1,100 @@
+{% if q %}
+<h5>'{{ q }}' 검색 결과입니다.</h5>
+{% endif %}
+
+<table>
+    <thead>
+        <tr class="text-center">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>등록일</th>
+            <th>조회수</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if notice_list %}
+        {% for notice in notice_list %}
+        <tr class="text-center" style="cursor:pointer;" onclick="location.href='/notice/{{ notice.id }}/'">
+            <td>{{ notice.id }}</td>
+            <td>{{ notice.title|truncatechars:30 }}</td>
+            <td>{{ notice.writer }}</td>
+            <td>{{ notice.registered_date|date:'Y. m. d' }}</td>
+            <td>{{ notice.hits }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+            {% if q %}          <!-- 검색어가 있어 q가 context로 넘어오면 검색결과가 없음 -->
+            <tr class="text-center">
+                <td colspan="5">
+                    일치하는 검색 결과가 없습니다.
+                </td>
+            </tr>
+            {% else %}          <!-- q가 없으면 검색어가 아니며 게시글이 존재하지 않으므로 게시글 미작성 -->
+            <tr class="text-center">
+                <td colspan="5">
+                    작성된 게시글이 없습니다.
+                </td>
+            </tr>
+            {% endif %}
+        {% endif %}
+    </tbody>
+</table>
+
+{% if is_paginated %}
+<ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+        <a class="page-link" href="?type={{ type }}&q={{ q }}&page={{ page_obj.previous_page_number }}"
+            tabindex="-1">이전</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">이전</a>
+    </li>
+    {% endif %}
+
+    {% for page in page_range %}
+    <li class="page-item {% if page == page_obj.number %} activate {% endif %}">
+        <a class="page-link" href="?type={{ type }}&q={{ q }}&page={{ page }}">{{ page }}</a>
+    </li>
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+    <li class="page-item">
+        <a class="page-link"
+            href="?type={{ type }}&q={{ q }}&page={{ page_obj.next_page_number }}">다음</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a class="page-link" href="#">다음</a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}
+
+<form action="" method="GET">
+    <div class="col">
+        <div style="float: right;" class="form-row">
+            <div class="form-row">
+                <div class="col" style="margin-top: 10px;">
+                    <select style="width: 6em;" class="custom-select custom-select-md" name="type">
+                        <option value="all">전체</option>
+                        <option value="title_content">제목+내용</option>
+                        <option value="title">제목</option>
+                        <option value="content">내용</option>
+                        <option value="writer">작성자</option>
+                    </select>
+                </div>
+                <div class="col" style="margin-top: 10px;">
+                    <input type="text" name="q" value="{{ q }}" class="form-control form-control-md"
+                        style="width: 15em;" placeholder="검색어를 입력해주세요.">
+                </div>
+                <div class="col">
+                    <!-- <button class="btn btn-md btn-outline-dark" type="submit">검색</button> -->
+                    <button class="btn btn-sm" type="submit" id="search_btn">검색</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

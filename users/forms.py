@@ -114,7 +114,7 @@ class LoginForm(forms.Form):
             if not check_password(password, user.password):
                 self.add_error('password', '비밀번호가 틀렸습니다.')
 
-#마이페이지
+# 마이페이지
 
 from django.contrib.auth.forms import UserChangeForm
 
@@ -127,7 +127,7 @@ class CustomUserChangeForm(UserChangeForm):
         attrs={'class': 'form-control', 'maxlength':'8',}), 
     )
     student_id = forms.IntegerField(required=False, label='학번', widget=forms.NumberInput(
-        attrs={'class': 'form-control', 'maxlength':'8', 'oninput':"maxLengthCheck(this)",}), 
+        attrs={'class': 'form-control', 'maxlength':'9', 'oninput':"maxLengthCheck(this)",}), 
     )   
     grade = forms.ChoiceField(choices=GRADE_CHOICES, label='학년', widget=forms.Select(
         attrs={'class': 'form-control',}), 
@@ -140,7 +140,7 @@ class CustomUserChangeForm(UserChangeForm):
         model = User()
         fields = ['hp','name','student_id', 'grade', 'department']
 
-#회원탈퇴
+# 회원탈퇴
 
 from django.contrib.auth.hashers import check_password
 
@@ -160,3 +160,24 @@ class CheckPasswordForm(forms.Form):
         if password:
             if not check_password(password, confirm_password):
                 self.add_error('password', '비밀번호가 일치하지 않습니다.')
+
+# 비밀번호 변경
+
+from django.contrib.auth.forms import PasswordChangeForm
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+        self.fields['old_password'].label = '기존 비밀번호'
+        self.fields['old_password'].widget.attrs.update({
+            'class': 'form-control',
+            'autofocus': False,
+        })
+        self.fields['new_password1'].label = '새 비밀번호'
+        self.fields['new_password1'].widget.attrs.update({
+            'class': 'form-control',
+        })
+        self.fields['new_password2'].label = '새 비밀번호 확인'
+        self.fields['new_password2'].widget.attrs.update({
+            'class': 'form-control',
+        })

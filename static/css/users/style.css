@@ -14,6 +14,13 @@
     font-style: normal;
   }
 
+  @font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
   .btn {font-size: 14px; width:105px; height:40px; padding:.8em 1.2em; line-height:14px;color: #fff; text-align: center; position:relative;}
   .btn {font-size: 14px; width:105px; height:40px; padding:.8em 1.2em; line-height:14px;color: #fff; text-align: center; position:relative;}

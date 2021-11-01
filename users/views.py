@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
+from django.views.generic.base import TemplateView
 from .decorators import *
 from .models import User 
 from django.views.generic import View
@@ -97,8 +98,10 @@ def register_success(request):
 from .forms import LoginForm
 from django.contrib.auth import login, authenticate
 from django.views.generic import FormView
+from notice.models import Notice
 
 class LoginView(FormView):
+    
     template_name = 'users/home.html'
     form_class = LoginForm
     success_url = '/'
@@ -113,6 +116,14 @@ class LoginView(FormView):
             login(self.request, user)
 
         return super().form_valid(form)
+    
+def main_view(request):
+    notice_list = Notice.objects.order_by('-id')[:5]
+    context = {
+        'notice_list' : notice_list,
+    }
+    return render(request, 'users/home.html', context)
+
 
 # 로그아웃
 from django.contrib.auth import logout
@@ -123,10 +134,15 @@ def logout_view(request):
 
 # 마이페이지
 
+
 @login_message_required
 def mypage_view(request):
     if request.method == 'GET':
         return render(request, 'users/mypage.html')
+
+
+
+
 
 from .forms import CustomUserChangeForm
 
@@ -163,3 +179,23 @@ def mypage_delete_view(request):
         password_form = CheckPasswordForm(request.user)
 
     return render(request, 'users/mypage_delete.html', {'password_form':password_form})
+
+
+#비밀번호 변경
+
+from .forms import CustomPasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+
+@login_message_required
+def password_edit_view(request):
+    if request.method == 'POST':
+        password_change_form = CustomPasswordChangeForm(request.user, request.POST)
+        if password_change_form.is_valid():
+            user = password_change_form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, "비밀번호가 변경되었습니다.")
+            return redirect('users:mypage')
+    else:
+        password_change_form = CustomPasswordChangeForm(request.user)
+
+    return render(request, 'users/mypage_password.html', {'password_change_form':password_change_form})

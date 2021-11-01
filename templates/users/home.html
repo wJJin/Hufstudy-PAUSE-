@@ -4,6 +4,11 @@
 
 
     <meta charset="utf-8">
+
+
+
+
+
     <title>HUFSTUDY</title>
     {% block mobileView %}
     {% endblock %}
@@ -41,6 +46,18 @@
 
 
     <style>
+        @font-face {
+          font-family: 'Wemakeprice-Bold';
+          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/Wemakeprice-Bold.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+        }
+        @font-face {
+          font-family: 'paybooc-Bold';
+          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+        }
 
       #jb-container {
         width: 1530px;
@@ -104,6 +121,28 @@
         margin-bottom: 2px;
         float: right;
       }
+
+      #jb-sidebar_1 {
+        width: 260px;
+        height: 70px;
+      }
+
+      #jb-sidebar_1_1 {
+        width: 190px;
+        height: 70px;
+      }
+
+      #jb-sidebar_1_2 {
+        width: 70px;
+        height: 70px;
+      }
+
+      #jb-sidebar_2 {
+        width: 260px;
+        height: 180px;
+      }
+
+
       #jb-sidebar2 {
         width: 260px;
         height: 480px;
@@ -125,7 +164,7 @@
     </div>
 
     <div id="jb-header2">
-      <a href="#"><img src="{%static 'img/users/HUFSTUDY_logo.png' %}" width="350px" height="120px" style="border-radius: 8px;"></a>
+      <a href="/"><img src="{%static 'img/users/homepage_logo.png' %}" width="350px" height="100px" style="border-radius: 8px; filter: drop-shadow(4px 4px 4px rgba(189, 189, 189));"></a>
     </div>
     <div id="jb-header3" style="background: darkgrey     no-repeat 0 0;background-size:100% 100%;">
         
@@ -141,24 +180,67 @@
     </div>
 
     <div id="jb-content2" style="background-color:#ffffff;">
+      {% for notice in notice_list %}
+        <div onclick="location.href='/notice/{{ notice.id }}'"style="cursor:pointer;">
+            <span>{{ notice.title|truncatechars:24 }}</span>
+        </div>
+      {% endfor %}
     </div>
 
     <div id="jb-sidebar" style="background-color:#ffffff;">
       {% if user.is_authenticated %}
+
+      <div class="card" style="width: 260px; height:250px; border: 1px solid #bcbcbc; background-image: url('static/img/users/card-body.png'); background-size:100%">
+        <div id="jb-sidebar_1" style="background-color: rgba(0,0,0,0)">
+          <div id="jb-sidebar_1_1" style="background-color: rgba(0,0,0,0); float: left;">
+            <h1 id="user_id" style=" margin-top: 25px; margin-left:20px; font-family:'Wemakeprice-Bold'; font-size: 22px;">{{ user.name }} 님</h1>
+          </div>
+
+          <div id="jb-sidebar_1_2" style="background-color: rgba(0,0,0,0); float: left;">
+            <a class="nav-link" href="{% url 'users:logout' %}" style=" color: rgb(38, 12, 63); font-size: 12px; margin-top: 40px;"><strong>logout</strong></a>
+          </div>
+        </div>
+  
+        <div id="jb-sidebar_2" style="background-color: rgba(0,0,0,0)">
+          <br>
+          <div style="font-size: 0.8em;">
+          <div class="row" style="margin: 0px; text-align: center;">
+            <div class="col">
+              <a href="{% url 'users:mypage' %}"><img src="{%static 'img/users/mypage_icon.png' %}" width="75px"></a>
+            </div>
+            <div class="col">
+              <a href="#"><img src="{%static 'img/users/written.jpg' %}" height="100px"></a>
+            </div>
+          </div>
+          <table style="margin-left: 10px;">
+            <tr>
+              <td>
+                <a class="nav-link" href="{% url 'users:mypage' %}" style="font-family: paybooc-Bold; color: black;">마이페이지</a>
+              </td>
+              <td>
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              </td>
+              <td>
+                <a class="nav-link" href="#" style="font-family: paybooc-Bold; color: black;">작성글보기</a>
+              </td>
+            </tr>
+          </table>
+        </div>
+        </div>
         
-      <a class="nav-link"><span id="user_id">{{ user.name }}</span>님 반갑습니다!</a>
-      <a class="nav-link" href="{% url 'users:mypage' %}">마이페이지</a>
-      <a class="nav-link" href="{% url 'users:logout' %}">logout</a>
+        
+
+      </div>
 
 
       {% else %}
-      <div class="card" style="width: 260px; height:250px; border: 1px solid #bcbcbc;">
+      <div class="card" style="width: 260px; height:250px; border: 1px solid #bcbcbc; background-color: #EBE8F7">
         <div class="card-body">
             <form method="POST" action="." novalidate>
                 {% csrf_token %}
 
                 <div class="mb-4 md-form" style="width: 210px; height: 18px;">
-                    <label name="label_user_id" for="{{ form.user_id.id_for_label }}""><i class="fas fa-user"></i>&nbsp;&nbsp;{{ form.user_id.label }}</label>
+                    <label name="label_user_id" for="{{ form.user_id.id_for_label }}"><i class="fas fa-user"></i>&nbsp;&nbsp;{{ form.user_id.label }}</label>
                     {{ form.user_id }}
                     <script type="text/javascript">
                         if (document.getElementsByName('user_id')[0].value != '') {
@@ -220,7 +302,20 @@
     </div>
 
     <div id="jb-sidebar2" style="background-color:#ffffff;">
+    1. 회의링크
+    <br>
+    <a href="https://meet.google.com/new" target="_blank">구글미트</a><br>
+    2.학교 홈페이지
+    <br>
+    <a href="https://www.hufs.ac.kr/" target="_blank">학교 홈페이지</a><br>
+    <a href="https://wis.hufs.ac.kr/src08/jsp/index.jsp" target="_blank">종합정보시스템</a><br>
+    <a href="https://eclass.hufs.ac.kr/" target="_blank">LMS</a><br>
+    <a href="https://wis.hufs.ac.kr/jsp/HUFS/seb/listCourseCatalog.jsp?campusGb=H2" target="_blank">글로벌 수강편람</a><br>
+    <a href="https://wis.hufs.ac.kr/src08/jsp/lecture/LECTURE2020L.jsp" target="_blank">강의시간표</a><br>
+
+    
     </div>
+
 
     <div id="jb-content3" style=" padding-top: 30px;">
       <div class="row">
@@ -249,5 +344,16 @@
     </div>  
 
   </div>
+
+  {% if messages %}
+  {% for message in messages %}
+  {% if message.tags %}
+  <script>
+      alert("{{ message.message }}")
+  </script>
+  {% endif %}
+  {% endfor %}
+  {% endif %}
+
 </body>
 </html>

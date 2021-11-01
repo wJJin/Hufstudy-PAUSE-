@@ -10,6 +10,7 @@
     <div id="jb-container">
         <div id="jb-header1">
             <img src="{%static 'img/users/logotop.png' %}" style="width: 1530px; height: 70px;">
+            <button class="btn1" type="button" onclick="location.href='/'" style="opacity: 0;">버튼1</button>
         </div>
 
         <div id="jb-container2" style="height: 470px;">
@@ -66,15 +67,15 @@
                     <br>
                 </div>
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                <a href="{% url 'users:mypage' %}" class="btn btn-red" style="font-family: 'paybooc-Bold';">수정취소</a>
-                &nbsp&nbsp&nbsp&nbsp
                 <button type="submit" class="btn btn-purple" style="font-family: 'paybooc-Bold';">수정하기</button>
+                &nbsp&nbsp&nbsp&nbsp
+                <a href="{% url 'users:mypage' %}" class="btn btn-red" style="font-family: 'paybooc-Bold';">수정취소</a>
             </form>
             </div>
             <div id="jb-container2-content3">
                 <h1 style="font-size: 0.6em; color: #8C8C8C;">
                     <br><br><br>
-                    &nbsp&nbsp알아주세요!!)) 전화번호 앞자리가 0으로 시작시 0을 제외하고 저장됩니다.</h1>
+                    &nbsp&nbsp더 나은 HUFSTUDY 사용을 위해 부탁드려요!</h1>
             </div>
 
         </div>
@@ -87,6 +88,15 @@
             <br>
             <h5 style="margin: 0px; font-size: 1.8rem; font-family: '양진체'; text-align: center;">To Do List</h5>
 
+        </div>
+
+        <div class="btn-group" role="group" style="position: absolute; left:100px; top:645px;">
+            <button class="btn btn-secondary" type="button">
+                오류 신고
+            </button> 
+            <button class="btn btn-secondary" type="button" style="width: 158px;">
+                ABOUT HUFSTUDY
+            </button>
         </div>
     </div>
 

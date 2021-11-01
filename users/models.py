@@ -7,6 +7,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from .choice import *
 
+
 class UserManager(BaseUserManager):
     def create_user(self, user_id, password, email, hp, name, student_id, grade, department, auth, **extra_fields):
 
